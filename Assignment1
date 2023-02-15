@@ -1,0 +1,100 @@
+1. Write a program containing a possible exception. Use a try block to throw it and a catch block 
+to handle it promptly.
+
+Ans- public class Assignment12 {
+	public static void main(String[] args) {
+		 try {
+			 int length=5;
+			 int[] a=new int[length];
+			 System.out.println(a[5]);
+		 }catch(Exception e) {
+			 System.out.println(e);
+		 }
+	}
+}
+
+Output:- java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+2. Write a program that illustrates the application of multiple catch statements.
+
+Ans- public class Assignment12 {
+	public static void main(String[] args) {
+		 try {
+			 int[] a= {1,2,3,4,5};
+			 int b=a[0]/0;
+			 System.out.println(b+ " " + a[5]);
+		 }catch(ArrayIndexOutOfBoundsException a) {
+			 System.out.println(a);
+		 }
+		 catch(ArithmeticException ae) {
+			 System.out.println(ae);
+		 }
+	}
+}
+Output from first catch block:- java.lang.ArithmeticException: / by zero
+Output from second catch block:- java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+3. Write a program that demonstrates how certain exception types are not allowed to be thrown.
+
+Ans- public class Assignment12
+{
+	public static void main(String[] args)
+    {
+    }
+	void check() throws RuntimeException{
+		FileReader fr=new FileReader("file.txt");
+        BufferedReader br=new BufferedReader(fr);
+        String str=br.readLine();
+	}
+}
+ In the above program, instead of throwing the RuntimeException or unchecked exception we are getting the error regarding filenotfoundexception which is a checked exception.
+ So we can clearly say that we cannot throw RuntimeException when we are getting any compiletime exception but unchecked exceptions can be thrown when we have any runtime exception.
+ In technical terms,Exception is parent class of runtime exception(it doesn't have each and every property of its parent).
+        Throwable->Exception->RuntimeException 
+
+4. Write a program to demonstrate the concept of re-throwing an exception.
+
+Ans- public class Assignment12
+{
+	static void rethrow() {
+		try {
+			String s=null;
+			System.out.println(s.length());
+		}catch(Exception e) {
+			System.out.println("caught an exception");
+			throw e;
+		}
+	}
+	public static void main(String[] args)
+    {
+        try {
+        	rethrow();
+        }catch(Exception e) {
+        	System.out.println("caught the same exception again");
+        }
+        
+    }
+}  
+
+5. You will be given two integers and as input, you have to compute x/y. If x and y are not 32 bit 
+signed integers or if y is zero, exception will occur and you have to report it. Read sample 
+Input/Output to know what to report in case of exceptions. 
+
+Ans- public class Assignment12 {
+	public static void main(String[] args) {
+		 Scanner s=new Scanner(System.in);
+	try {	
+		System.out.println("Enter number");
+		int x= s.nextInt();
+		System.out.println("Enter number");
+		int y=s.nextInt();
+		System.out.println(x/y);
+	  }
+	  catch(InputMismatchException ism) {
+		  System.out.println(ism);
+	  }
+	  catch(ArithmeticException ae) {
+		  System.out.println(ae);
+	  }
+	}
+}
